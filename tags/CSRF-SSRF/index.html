@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>标签: CSRF|SSRF | Dralin's SweetNest</title><meta name="author" content="Dralin Feng"><meta name="copyright" content="Dralin Feng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="A Little Blog Of Dralin">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dralin&#39;s SweetNest">
+<meta property="og:url" content="http://fzsecurity-github.github.io/tags/CSRF-SSRF/index.html">
+<meta property="og:site_name" content="Dralin&#39;s SweetNest">
+<meta property="og:description" content="A Little Blog Of Dralin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fzsecurity-github.github.io/img/avatar.jpg">
+<meta property="article:author" content="Dralin Feng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fzsecurity-github.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/sweetwo.png"><link rel="canonical" href="http://fzsecurity-github.github.io/tags/CSRF-SSRF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Dralin Feng","link":"链接: ","source":"来源: Dralin's SweetNest","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '标签: CSRF|SSRF',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-05 21:31:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/myStyle.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/6545b259c458853aefa5fc10.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Dralin's SweetNest"><span class="site-name">Dralin's SweetNest</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">CSRF|SSRF</h1></div></header><main class="layout" id="content-inner"><div id="tag"><div class="article-sort-title">标签 - CSRF|SSRF</div><div class="article-sort"><div class="article-sort-item year">2023</div><div class="article-sort-item"><a class="article-sort-item-img" href="/2023/10/13/csrf/" title="CSRF以及SSRF"><img src="https://pic.imgdb.cn/item/6545b9a8c458853aefbbd923.jpg" alt="CSRF以及SSRF" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-10-13T07:51:17.000Z" title="发表于 2023-10-13 15:51:17">2023-10-13</time></div><a class="article-sort-item-title" href="/2023/10/13/csrf/" title="CSRF以及SSRF">CSRF以及SSRF</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Dralin Feng</div><div class="author-info__description">A Little Blog Of Dralin</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/fzsecurity-github"><i class="fab fa-github"></i><span>Come with me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2786245981@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2786245981&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my little world</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/11/05/WAFno1/" title="WAF绕过|信息收集|反爬虫延迟|代理池"><img src="https://pic.imgdb.cn/item/6545b9a8c458853aefbbd923.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="WAF绕过|信息收集|反爬虫延迟|代理池"/></a><div class="content"><a class="title" href="/2023/11/05/WAFno1/" title="WAF绕过|信息收集|反爬虫延迟|代理池">WAF绕过|信息收集|反爬虫延迟|代理池</a><time datetime="2023-11-05T12:52:34.000Z" title="发表于 2023-11-05 20:52:34">2023-11-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/05/neiwang/" title="内网|外网|小姿势"><img src="/img/preview.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="内网|外网|小姿势"/></a><div class="content"><a class="title" href="/2023/11/05/neiwang/" title="内网|外网|小姿势">内网|外网|小姿势</a><time datetime="2023-11-05T04:54:41.000Z" title="发表于 2023-11-05 12:54:41">2023-11-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/04/my-serve-file/" title="my_serve_file|Record"><img src="/img/reHe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="my_serve_file|Record"/></a><div class="content"><a class="title" href="/2023/11/04/my-serve-file/" title="my_serve_file|Record">my_serve_file|Record</a><time datetime="2023-11-04T01:30:16.000Z" title="发表于 2023-11-04 09:30:16">2023-11-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/29/osTanzhen/" title="漏洞探测发现|os|web|app|api接口|端口|探针"><img src="/img/preview.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="漏洞探测发现|os|web|app|api接口|端口|探针"/></a><div class="content"><a class="title" href="/2023/10/29/osTanzhen/" title="漏洞探测发现|os|web|app|api接口|端口|探针">漏洞探测发现|os|web|app|api接口|端口|探针</a><time datetime="2023-10-29T14:27:29.000Z" title="发表于 2023-10-29 22:27:29">2023-10-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/29/csoeDGUT/" title="200wCSOE|Recording"><img src="/img/reHe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="200wCSOE|Recording"/></a><div class="content"><a class="title" href="/2023/10/29/csoeDGUT/" title="200wCSOE|Recording">200wCSOE|Recording</a><time datetime="2023-10-29T01:41:00.000Z" title="发表于 2023-10-29 09:41:00">2023-10-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CSRF-SSRF/"><span class="card-category-list-name">CSRF|SSRF</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/SQL%E6%B3%A8%E5%85%A5/"><span class="card-category-list-name">SQL注入</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/WAF%E7%BB%95%E8%BF%87/"><span class="card-category-list-name">WAF绕过</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/XSS%E8%B7%A8%E7%AB%99/"><span class="card-category-list-name">XSS跨站</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/web%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86/"><span class="card-category-list-name">web漏洞知识</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/"><span class="card-category-list-name">业务逻辑越权</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BB%A3%E7%A0%81-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/"><span class="card-category-list-name">代码|命令执行漏洞</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"><span class="card-category-list-name">信息收集</span><span class="card-category-list-count">3</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8E%A2%E6%B5%8B%E5%8F%91%E7%8E%B0/" style="font-size: 1.1em; color: #999">漏洞探测发现</a> <a href="/tags/RCE/" style="font-size: 1.1em; color: #999">RCE</a> <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.1em; color: #999">文件上传</a> <a href="/tags/%E5%AE%9E%E6%88%98%E7%BB%83%E4%B9%A0%E5%BF%83%E5%BE%97/" style="font-size: 1.5em; color: #99a9bf">实战练习心得</a> <a href="/tags/%E5%BA%94%E7%94%A8%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 1.1em; color: #999">应用密码学</a> <a href="/tags/WAF%E7%BB%95%E8%BF%87/" style="font-size: 1.1em; color: #999">WAF绕过</a> <a href="/tags/CSRF-SSRF/" style="font-size: 1.1em; color: #999">CSRF|SSRF</a> <a href="/tags/WEB%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86/" style="font-size: 1.1em; color: #999">WEB漏洞知识</a> <a href="/tags/%E5%8F%91%E7%89%A2%E9%AA%9A/" style="font-size: 1.1em; color: #999">发牢骚</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 1.23em; color: #999ea6">信息收集</a> <a href="/tags/XSS%E8%B7%A8%E7%AB%99/" style="font-size: 1.23em; color: #999ea6">XSS跨站</a> <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E5%AE%89%E5%85%A8/" style="font-size: 1.37em; color: #99a4b2">文件操作安全</a> <a href="/tags/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/" style="font-size: 1.3em; color: #99a1ac">业务逻辑越权</a> <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 1.17em; color: #999c9f">反序列化</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 1.43em; color: #99a6b9">SQL注入</a> <a href="/tags/web%E6%BC%8F%E6%B4%9E%E7%9F%A5%E8%AF%86/" style="font-size: 1.1em; color: #999">web漏洞知识</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">29</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">45</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-09-09T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">46.4k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-05T13:31:32.886Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: ture"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>成功的花，人们只惊羡她现时的明艳，然而当初她的芽儿，浸透了奋斗的泪泉，洒遍了牺牲的血雨。成功不是一时的,而是以日夜的奋斗拼搏出来的。锲而舍之，朽木不折；锲而不舍，金石可镂。朋友们，一起去探索那浩瀚的星辰吧✨</div><div class="btn-xz-box"><a class="btn-xz" target="_blank" rel="noopener" href="https://stellarium.org/">点击开启星辰之旅</a></div></div></div></div></div><div class="ft-item-2"><p class="ft-t">猜你想看💡<ul class="ft-links"><li><a href="/personal/about/">关于作者</a></li><li><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a></li><li><a href="/tags/">文章标签</a></li></ul></p></div></div><div class="copyright"><span><b>&copy;2023</b></span><span><b>&nbsp;&nbsp;By Dralin Feng</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script src="/js/jquery.js"></script><script src="/js/sakura.js"></script><script src="/js/foot.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/cursor.js"></script><script defer src="/js/runtime.js"></script><script async src="/js/title.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '113.34532,23.15624';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":200,"height":360},"mobile":{"show":false},"rect":{"opacity":0.7},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
